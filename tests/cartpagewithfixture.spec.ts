@@ -7,7 +7,7 @@ test.beforeEach(async({loginPage,inventoryPage})=>{
 
     await loginPage.doLogin(process.env.APPUSERNAME!,process.env.APPPASSWORD!);
     await loginPage.addWait();
-    await inventoryPage.addProductToCart(process.env.PRODUCTNAME!);
+    await inventoryPage.addProductToCart("Sauce Labs Backpack");
 
 
 })
@@ -23,7 +23,7 @@ test("Test for Launch of cart page",async({inventoryPage})=>{
 test("Test for get cart product details",async({inventoryPage,cartPage})=>{
 await inventoryPage.gotoCartPage();
 let allProducts:string[]=await cartPage.getCartProductDetails();
-expect(allProducts[0]).toBe(process.env.PRODUCTNAME!);
+expect(allProducts[0]).toBe("Sauce Labs Backpack");
 console.log("Product from cart: ",allProducts);
 })
 

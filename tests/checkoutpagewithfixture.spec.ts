@@ -5,7 +5,7 @@ import { jsonUtil } from "../src/utilities/JsonUtil.js";
 test.beforeEach(async({loginPage,inventoryPage,cartPage})=>{
     await loginPage.doLogin(process.env.APPUSERNAME!,process.env.APPPASSWORD!);
     await loginPage.addWait();
-    await inventoryPage.addProductToCart(process.env.PRODUCTNAME!);
+    await inventoryPage.addProductToCart("Sauce Labs Backpack");
     await loginPage.addWait();
     await inventoryPage.gotoCartPage();
     await cartPage.gotoCheckoutPage();

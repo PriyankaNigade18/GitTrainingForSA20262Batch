@@ -23,8 +23,8 @@ console.log(allProducts);
 test("Test for add product into cart",async({loginPage,inventoryPage})=>{
 await loginPage.doLogin(process.env.APPUSERNAME!,process.env.APPPASSWORD!);
 await loginPage.addWait();
-let productName=await inventoryPage.addProductToCart(process.env.PRODUCTNAME!);
-expect(productName).toBe(process.env.PRODUCTNAME!);
+let productName=await inventoryPage.addProductToCart("Sauce Labs Backpack");
+expect(productName).toBe("Sauce Labs Backpack");
 console.log("Product added into cart: "+productName);
 })
 
