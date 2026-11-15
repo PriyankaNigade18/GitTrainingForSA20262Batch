@@ -33,7 +33,7 @@ jobs:
         run: npx playwright install --with-deps chromium
 
       - name: Run UI tests
-        run: npx playwright test --project=chromium
+        run: npx playwright test --project=ui
         env:
           ENV: ${{ github.event.inputs.environment || 'qa'}}
           APPURL: ${{ secrets.APPURL }}
