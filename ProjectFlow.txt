@@ -202,7 +202,64 @@ provided in detialed design document by developers
 
 1.Real projects--->Github--->Jenkins---->Github Action
 
-//BDD
+Github action
+=================
+GitHub Actions is a continuous integration and continuous delivery
+ (CI/CD) platform that allows you to automate your build, test, and 
+ deployment pipeline. You can create workflows that run tests whenever 
+ you push a change to your repository,
+ or that deploy merged pull requests to production.
+
+step1: update .yml file
+step2: create secretes for test data at repository site
+github--->setting--->secretes--->action--->add
+
+step3: change from playwright.config.ts file
+workers: process.env.CI ? "50%": undefined,
+ headless:process.env.CI?true:false
+ change in report
+ ['html',{
+      outputFolder: 'reports/html-report',
+      open: 'never'
+    }]
+
+step4: push the code--->object github action
+
+step5: For cache just use updated yml file
+
+step6: Multiple enviornment test 
+  - first create enviornment
+  --->github--->setting--->enviornment-->create env and add secrets
+  - update yml file and push th code and run it through Run Workflow option
+
+step7:for project deployment i want website luke view so 
+do setup for github page 
+GitHub Pages documentation(https://docs.github.com/en/pages)
+GitHub Pages turns any GitHub repository into a live website—no separate hosting required.
+ --->github--->setting--->pages--->Build and deployment-->Github Actions
+
+Step8: Email-configuration(google account)
+How to create a Google App Password
+1. Sign in to your Google account.
+2. Open Google Account Security.
+3. Make sure 2-Step Verification is enabled.
+4. Find App passwords.
+5. Click App passwords.
+6. Sign in again if Google asks.
+7. Enter an app name, for example:
+   Playwright Email
+8. Click Create.
+9. Google will generate a 16-character App Password, something like:
+   abcd efgh ijkl mnop
+10. Copy it and use it in your application.
+
+
+Jenkins
+============
+1.install jenkins
+2.To start server java -jar jenkins.war
+3.open url http://localhost:8080/login
+4.To stop server ctrl+c
 
 //AI Intergration
 
