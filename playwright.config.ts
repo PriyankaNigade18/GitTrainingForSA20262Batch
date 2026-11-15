@@ -30,7 +30,8 @@ export default defineConfig({
   workers: process.env.CI ? "50%": undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter:[['html',{
-    outputFolder:'reports/html-report',open:'never'
+    outputFolder:'reports/html-report',
+    open:'never'
   }],["allure-playwright"]],
   
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
@@ -42,7 +43,7 @@ export default defineConfig({
     trace: 'on-first-retry',
     screenshot:'on',
     video:'on',
-    headless:false,
+    headless:!process.env.CI?false:true,
     
     
   },
