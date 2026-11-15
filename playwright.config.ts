@@ -1,5 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
-import reportingLabs from './reporting-labs.config.js';
+//import reportingLabs from './reporting-labs.config.js';
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -31,7 +31,7 @@ export default defineConfig({
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter:[['html',{
     outputFolder:'reports/html-report',open:'never'
-  }],["allure-playwright"],['reporting-labs',reportingLabs]],
+  }],["allure-playwright"]],
   
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
