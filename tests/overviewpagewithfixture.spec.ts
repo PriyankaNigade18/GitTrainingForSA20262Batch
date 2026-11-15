@@ -7,7 +7,7 @@ import { jsonUtil } from "../src/utilities/JsonUtil.js";
 test.beforeEach(async({loginPage,inventoryPage,cartPage,checkoutPage})=>{
     await loginPage.doLogin(process.env.APPUSERNAME!,process.env.APPPASSWORD!);
     await loginPage.addWait();
-    await inventoryPage.addProductToCart(process.env.PRODUCTNAME!);
+    await inventoryPage.addProductToCart("Sauce Labs Backpack");
     await loginPage.addWait();
     await inventoryPage.gotoCartPage();
     await cartPage.gotoCheckoutPage();
@@ -19,7 +19,7 @@ test.beforeEach(async({loginPage,inventoryPage,cartPage,checkoutPage})=>{
 test("Test for Payment details",async({overviewPage})=>{
 let allData=await overviewPage.getAllPaymentDetials();
 console.log(allData);
-expect(allData).toContain("Total: $53.99");
+expect(allData).toContain("Total: $32.39");
 
 })
 

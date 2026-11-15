@@ -49,7 +49,7 @@ export class InventoryPage extends BasePage
         }
 
         //click on addto cart button
-        await this.addToCartButton.first().click();
+        await this.addToCartButton.click();
         
         return productName;
         
