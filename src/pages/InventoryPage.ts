@@ -16,7 +16,8 @@ export class InventoryPage extends BasePage
         super(page);
         this.products=page.locator("div.inventory_item_name ");
         this.footerList=page.locator("footer a");
-        this.addToCartButton=page.getByText("Add to cart");
+        //this.addToCartButton=page.getByText("Add to cart");
+        this.addToCartButton=page.locator("//button[text()='Add to cart']");
         this.cartOption=page.locator("a.shopping_cart_link");
 
     }
