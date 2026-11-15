@@ -43,6 +43,7 @@ export class InventoryPage extends BasePage
             {
                 //click on product
                 await prod.click();
+                await this.page.waitForTimeout(1000);
                 break;
             }
         }
