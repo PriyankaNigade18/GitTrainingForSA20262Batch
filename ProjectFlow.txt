@@ -486,6 +486,8 @@ allure generate allure-results -o allure-report--clean
 node src/allure/customize-allure-report.js
 allure open allure-report
 
+yml file uploaded
+
 
 
 
