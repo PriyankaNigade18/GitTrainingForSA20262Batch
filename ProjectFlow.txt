@@ -224,7 +224,7 @@ workers: process.env.CI ? "50%": undefined,
     }]
 headless:!process.env.CI?false:true,
 
-step4: push the code--->object github action
+step4: push the code--->observe github action
 
 step5: For cache just use updated yml file
 
@@ -233,7 +233,7 @@ step6: Multiple enviornment test
   --->github--->setting--->enviornment-->create env and add secrets
   - update yml file and push th code and run it through Run Workflow option
 
-step7:for project deployment i want website luke view so 
+step7:for project deployment i want website  view so 
 do setup for github page 
 GitHub Pages documentation(https://docs.github.com/en/pages)
 GitHub Pages turns any GitHub repository into a live website—no separate hosting required.

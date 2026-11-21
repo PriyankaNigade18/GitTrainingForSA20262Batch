@@ -1,8 +1,8 @@
 name: Playwright First WorkFlow Tests
 
 on:
-  schedule:
-    - cron: '30 14 * * 1-5' # Mon-Fri 8:00 PM IST
+ # schedule:
+   # - cron: '30 14 * * 1-5' # Mon-Fri 8:00 PM IST
   push:
     branches: [master]
   pull_request:
