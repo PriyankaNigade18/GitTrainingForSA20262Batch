@@ -950,8 +950,8 @@ jobs:
     name: Send Gmail Report Notification
 
     needs: 
-      ui-tests
-      deploy-report
+      - ui-tests
+      - deploy-report
 
     if: always()
 
