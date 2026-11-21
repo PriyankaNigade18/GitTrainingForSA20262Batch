@@ -230,7 +230,7 @@ step5: For cache just use updated yml file
 
 step6: Multiple enviornment test 
   - first create enviornment
-  --->github--->setting--->enviornment-->create env and add secrets
+  --->github--->setting--->enviornment-->create QA env and add secrets
   - update yml file and push th code and run it through Run Workflow option
 
 step7:for project deployment i want website  view so 
