@@ -7,7 +7,7 @@ async function sendEmail() {
     const username = process.env.MAIL_USERNAME;
     const password = process.env.MAIL_APP_PASSWORD;
     const reportUrl = process.env.ALLURE_REPORT_URL;
-    const recipient = process.env.STUDENT_EMAILS;//made changes
+    const recipient = process.env.STUDENT_EMAILS;
 
     console.log('2️⃣ Username available:', !!username);
     console.log('3️⃣ Password available:', !!password);
