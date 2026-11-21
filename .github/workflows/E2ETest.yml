@@ -949,7 +949,9 @@ jobs:
 
     name: Send Gmail Report Notification
 
-    needs: deploy-report
+    needs: 
+      ui-tests
+      deploy-report
 
     if: always()
 
@@ -1000,7 +1002,7 @@ jobs:
         env:
           MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
           MAIL_APP_PASSWORD: ${{ secrets.MAIL_APP_PASSWORD }}
-          ALLURE_REPORT_URL: https://priyankanigade18.github.io/GitTrainingForSA20262Batch/
+          ALLURE_REPORT_URL: https://priyankanigade18.github.io/GitTrainingForSA20262Batch/allure/index.html
           STUDENT_EMAILS: ${{ secrets.STUDENT_EMAILS }}
 
 
