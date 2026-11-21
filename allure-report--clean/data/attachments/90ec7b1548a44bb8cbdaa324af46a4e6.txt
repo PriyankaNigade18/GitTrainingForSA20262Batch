@@ -1,0 +1,11 @@
+Checkoiut process for user Priyanka started...
+[
+  'Payment Information:',
+  'SauceCard #31337',
+  'Shipping Information:',
+  'Free Pony Express Delivery!',
+  'Price Total',
+  'Item total: $29.99',
+  'Tax: $2.40',
+  'Total: $32.39'
+]

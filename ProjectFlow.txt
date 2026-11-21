@@ -255,6 +255,240 @@ How to create a Google App Password
 10. Copy it and use it in your application.
 
 
+then create secretes
+Repository 
+→ Settings → Secrets and variables → Actions → New repository secret 
+Create: 
+MAIL_USERNAME = your Gmail address 
+MAIL_APP_PASSWORD = your generated Google App Password 
+STUDENT_EMAIL = recipient's Gmail address (optional for demonstration)
+
+In project install Nodemailer Email Integration 
+Install packages: 
+npm install nodemailer 
+npm install -D @types/nodemailer 
+npm install -D tsx 
+
+do local powershell test.
+
+Local Email Test 
+Test locally before changing GitHub Actions. This isolates Gmail/Nodemailer problems from CI/CD problems. 
+In PowerShell, temporarily set: 
+$env:MAIL_USERNAME="your email" 
+$env:MAIL_APP_PASSWORD= 
+$env:ALLURE_REPORT_URL="https://YOUR-USER.github.io/YOUR-REPOSITORY/" 
+$env:STUDENT_EMAILS="piyu1818@gmail.com"
+
+https://github.com/PriyankaNigade18/GitTrainingForSA20262Batch.git
+
+Then run: 
+npx tsx src/email/send-report-email.ts 
+
+
+ Do not save the App Password in the repository. 
+=====================================================
+ 1.create allure folder inside src folder
+2.create assets folder inside allure folder and add company-logo.png file
+
+do confirm it in terminal run command
+Get-ChildItem .\src\allure\assets
+
+3.create envoirnment utility
+src/allure/create-allure-environment.ts
+import fs from 'fs';
+import path from 'path';
+
+export function createAllureEnvironment() {
+
+    const allureResultsPath = path.join(
+        process.cwd(),
+        'allure-results'
+    );
+
+    // Create allure-results folder if it does not exist
+    if (!fs.existsSync(allureResultsPath)) {
+        fs.mkdirSync(allureResultsPath, { recursive: true });
+    }
+
+    const environmentContent = `
+Company=Beizz IT Tech
+Application=SwagLab Application
+Environment=${process.env.ENV || 'QA'}
+Framework=Playwright
+Browser=Chromium
+Execution=GitHub Actions
+Node Version=${process.version}
+Git Branch=${process.env.GITHUB_REF_NAME || 'Local'}
+Git Commit=${process.env.GITHUB_SHA || 'Local'}
+Run Number=${process.env.GITHUB_RUN_NUMBER || 'Local'}
+`;
+
+    fs.writeFileSync(
+        path.join(allureResultsPath, 'environment.properties'),
+        environmentContent.trim()
+    );
+
+    console.log("Environment file created at:",
+        path.join(allureResultsPath, 'environment.properties')
+    );
+}
+
+
+
+
+
+4.create global-setup.ts in root of the project
+import { createAllureEnvironment } from './src/allure/create-allure-environment.js';
+
+async function globalSetup() {
+    console.log("===== GLOBAL SETUP STARTED =====");
+
+    createAllureEnvironment();
+
+    console.log("===== ALLURE ENVIRONMENT FILE CREATED =====");
+}
+
+export default globalSetup;
+
+5.Go to playwright.config file and do setup
+
+export default defineConfig({
+testDir: './tests',
+globalSetup: './global-setup.ts',
+// rest of configuration
+});
+
+6.Run the test
+npx playwright test
+
+
+7.generate allure report
+
+allure generate allure-results -o allure-report
+8.open allure report
+allure open allure-report
+
+9.create report customization script
+ Create Report Customization Script
+ src/allure/customize-allure-report.js
+ import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+// __dirname equivalent for ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Project root
+const projectRoot = path.resolve(__dirname, '../../');
+
+const reportPath = path.join(
+    projectRoot,
+    'allure-report'
+);
+
+const logoSource = path.join(
+    projectRoot,
+    'src',
+    'allure',
+    'assets',
+    'company-logo.png'
+);
+
+const logoDestination = path.join(
+    reportPath,
+    'company-logo.png'
+);
+
+const indexFile = path.join(
+    reportPath,
+    'index.html'
+);
+
+// Check report folder
+if (!fs.existsSync(reportPath)) {
+    console.error('❌ allure-report folder does not exist.');
+    process.exit(1);
+}
+
+// Check logo
+if (!fs.existsSync(logoSource)) {
+    console.error('❌ Company logo not found:', logoSource);
+    process.exit(1);
+}
+
+// Check index.html
+if (!fs.existsSync(indexFile)) {
+    console.error('❌ index.html not found inside allure-report.');
+    process.exit(1);
+}
+
+// Copy logo
+fs.copyFileSync(
+    logoSource,
+    logoDestination
+);
+
+console.log('✅ Company logo copied to Allure report.');
+
+// Read index.html
+let html = fs.readFileSync(
+    indexFile,
+    'utf8'
+);
+
+// Logo CSS + HTML
+const logoHtml = `
+<style>
+.company-logo-container {
+    position: fixed;
+    top: 10px;
+    left: 20px;
+    z-index: 9999;
+    background: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.company-logo {
+    height: 40px;
+    width: auto;
+}
+</style>
+
+<div class="company-logo-container">
+    <img
+        src="company-logo.png"
+        class="company-logo"
+        alt="Company Logo"
+    />
+</div>
+`;
+
+// Add logo before </head>
+html = html.replace(
+    '</head>',
+    `${logoHtml}</head>`
+);
+
+// Save modified report
+fs.writeFileSync(
+    indexFile,
+    html,
+    'utf8'
+);
+
+console.log('✅ Allure report customized successfully.');
+
+after this flow should be 
+npx playwright test
+allure generate allure-results -o allure-report--clean
+node src/allure/customize-allure-report.js
+allure open allure-report
+
+
+
+
 Jenkins
 ============
 1.install jenkins
