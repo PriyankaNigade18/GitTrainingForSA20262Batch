@@ -992,7 +992,7 @@ jobs:
             echo "❌ STUDENT_EMAILS is missing"
          fi
         env:
-          STUDENT_EMAILS: ${{ secrets.STUDENT_EMAIL }}
+          STUDENT_EMAILS: ${{ secrets.STUDENT_EMAILS }}
           
       - name: Send Allure Report Email
         run: |
@@ -1001,7 +1001,7 @@ jobs:
           MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
           MAIL_APP_PASSWORD: ${{ secrets.MAIL_APP_PASSWORD }}
           ALLURE_REPORT_URL: https://priyankanigade18.github.io/PlaywrightENEFrameworkSA20263Final/
-          STUDENT_EMAILS: ${{ secrets.STUDENT_EMAIL }}
+          STUDENT_EMAILS: ${{ secrets.STUDENT_EMAILS }}
 
 
   # ============================================================
