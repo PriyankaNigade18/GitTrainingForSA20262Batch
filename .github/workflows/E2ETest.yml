@@ -1000,7 +1000,7 @@ jobs:
         env:
           MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
           MAIL_APP_PASSWORD: ${{ secrets.MAIL_APP_PASSWORD }}
-          ALLURE_REPORT_URL: https://priyankanigade18.github.io/PlaywrightENEFrameworkSA20263Final/
+          ALLURE_REPORT_URL: https://github.com/PriyankaNigade18/GitTrainingForSA20262Batch/
           STUDENT_EMAILS: ${{ secrets.STUDENT_EMAILS }}
 
 
