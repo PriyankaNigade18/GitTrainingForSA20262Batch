@@ -67,18 +67,18 @@ pipeline {
 
                 withCredentials([
                     string(
-                        credentialsId: 'app_url',
-                        variable: 'APP_URL'
+                        credentialsId: 'appurl',
+                        variable: 'APPURL'
                     )
                 ]) {
                     nodejs('Node24') {
                         bat '''
-                            if not defined APP_URL (
-                                echo ERROR: APP_URL is missing
+                            if not defined APPURL (
+                                echo ERROR: APPURL is missing
                                 exit /b 1
                             )
 
-                            echo APP_URL credential is available
+                            echo APPURL credential is available
                         '''
                     }
                 }
@@ -92,8 +92,8 @@ pipeline {
 
                 withCredentials([
                     string(
-                        credentialsId: 'app_url',
-                        variable: 'APP_URL'
+                        credentialsId: 'appurl',
+                        variable: 'APPURL'
                     ),
                     string(
                         credentialsId: 'appusername',
@@ -105,21 +105,21 @@ pipeline {
                     ),
                     string(
                         credentialsId: 'api_url',
-                        variable: 'API_URL'
+                        variable: 'APIBASEURL'
                     ),
                     string(
                         credentialsId: 'accesstoken',
-                        variable: 'ACCESSTOKEN'
+                        variable: 'APITOKEN'
                     ),
                     string(
-                        credentialsId: 'product_name',
-                        variable: 'PRODUCT_NAME'
+                        credentialsId: 'productname',
+                        variable: 'PRODUCTNAME'
                     )
                 ]) {
                     nodejs('Node24') {
                         bat """
                             set "ENV=${params.ENVIRONMENT.toLowerCase()}"
-                            set "APPBASEURL=%APP_URL%"
+                            set "APPBASEURL=%APPURL%"
 
                             echo Environment: %ENV%
                             echo Starting Playwright tests...
