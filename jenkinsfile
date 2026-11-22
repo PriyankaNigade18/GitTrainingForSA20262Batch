@@ -104,11 +104,11 @@ pipeline {
                         variable: 'APPPASSWORD'
                     ),
                     string(
-                        credentialsId: 'api_url',
+                        credentialsId: 'apibaseurl',
                         variable: 'APIBASEURL'
                     ),
                     string(
-                        credentialsId: 'accesstoken',
+                        credentialsId: 'apitoken',
                         variable: 'APITOKEN'
                     ),
                     string(
