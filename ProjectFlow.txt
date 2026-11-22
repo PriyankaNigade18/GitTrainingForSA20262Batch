@@ -488,6 +488,9 @@ allure open allure-report
 
 yml file uploaded
 
+For Email Report 
+Take the url from pipeline and add it here from dashboard stage
+
 
 
 
